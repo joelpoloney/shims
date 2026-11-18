@@ -7,8 +7,14 @@
 const MEDIA_HOSTS = ['preview.sndstatic.com', 'covers.sndstatic.com', 'geo-samples.beatport.com', 'geo-media.beatport.com', 'i1.sndcdn.com', 'i.ytimg.com', 'playback.media-streaming.soundcloud.cloud'];
 
 // A /_media/ path on a host that only serves media, never a site's own pages.
+// The browser tidies a path before loading it ("a/../b" becomes "b"), so the
+// check runs on the tidied path and refuses any path that tidying changes.
 export function mediaOk(path) {
-  const m = /^\/_media\/([^/?#]+)\//.exec(typeof path === 'string' ? path : '');
+  if (typeof path !== 'string' || /[\\\s]/.test(path)) return false;
+  let u;
+  try { u = new URL(path, 'https://crate.invalid'); } catch { return false; }
+  if (u.origin !== 'https://crate.invalid' || u.pathname + u.search + u.hash !== path) return false;
+  const m = /^\/_media\/([^/]+)\//.exec(u.pathname);
   return !!m && MEDIA_HOSTS.includes(m[1]);
 }
 
