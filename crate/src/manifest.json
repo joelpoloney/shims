@@ -1,0 +1,319 @@
+{
+  "format": "composition/1",
+  "name": "Crate",
+  "entry": "index.html",
+  "hosts": [
+    {
+      "host": "soundeo.com",
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/tracks/favor/{id}"
+        }
+      ]
+    },
+    {
+      "host": "geo-samples.beatport.com"
+    },
+    {
+      "host": "covers.sndstatic.com"
+    },
+    {
+      "host": "preview.sndstatic.com"
+    },
+    {
+      "host": "soundcloud.com"
+    },
+    {
+      "host": "a-v2.sndcdn.com"
+    },
+    {
+      "host": "api-v2.soundcloud.com"
+    },
+    {
+      "host": "i1.sndcdn.com"
+    },
+    {
+      "host": "wave.sndcdn.com"
+    },
+    {
+      "host": "playback.media-streaming.soundcloud.cloud"
+    },
+    {
+      "host": "api.beatport.com",
+      "mint": {
+        "url": "https://www.beatport.com/api/auth/session",
+        "tokenPath": "token.accessToken",
+        "header": "Authorization",
+        "scheme": "Bearer",
+        "expiresPath": "token.accessTokenExpires"
+      }
+    },
+    {
+      "host": "geo-media.beatport.com"
+    },
+    {
+      "host": "www.youtube.com"
+    },
+    {
+      "host": "i.ytimg.com"
+    },
+    {
+      "host": "www.1001tracklists.com",
+      "endpoints": [
+        {
+          "method": "POST",
+          "path": "/search/result.php"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "name": "shared",
+      "engine": "supabase",
+      "storage": {
+        "tables": [
+          {
+            "name": "playlists",
+            "columns": [
+              {
+                "name": "id",
+                "type": "text"
+              },
+              {
+                "name": "kind",
+                "type": "text"
+              },
+              {
+                "name": "name",
+                "type": "text"
+              },
+              {
+                "name": "owner",
+                "type": "text"
+              },
+              {
+                "name": "forked_from",
+                "type": "text"
+              },
+              {
+                "name": "created_at",
+                "type": "text"
+              },
+              {
+                "name": "updated_at",
+                "type": "text"
+              },
+              {
+                "name": "updated_by",
+                "type": "text"
+              },
+              {
+                "name": "deleted_at",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "name": "playlist_tracks",
+            "columns": [
+              {
+                "name": "playlist_id",
+                "type": "text"
+              },
+              {
+                "name": "track_key",
+                "type": "text"
+              },
+              {
+                "name": "track",
+                "type": "text"
+              },
+              {
+                "name": "position",
+                "type": "real"
+              },
+              {
+                "name": "added_by",
+                "type": "text"
+              },
+              {
+                "name": "added_at",
+                "type": "text"
+              },
+              {
+                "name": "moved_by",
+                "type": "text"
+              },
+              {
+                "name": "color",
+                "type": "integer"
+              },
+              {
+                "name": "color_by",
+                "type": "text"
+              },
+              {
+                "name": "energy",
+                "type": "real"
+              },
+              {
+                "name": "energy_by",
+                "type": "text"
+              },
+              {
+                "name": "note",
+                "type": "text"
+              },
+              {
+                "name": "note_by",
+                "type": "text"
+              },
+              {
+                "name": "removed_at",
+                "type": "text"
+              },
+              {
+                "name": "removed_by",
+                "type": "text"
+              },
+              {
+                "name": "updated_at",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "name": "comments",
+            "columns": [
+              {
+                "name": "id",
+                "type": "text"
+              },
+              {
+                "name": "playlist_id",
+                "type": "text"
+              },
+              {
+                "name": "track_key",
+                "type": "text"
+              },
+              {
+                "name": "author",
+                "type": "text"
+              },
+              {
+                "name": "body",
+                "type": "text"
+              },
+              {
+                "name": "created_at",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "name": "activity",
+            "columns": [
+              {
+                "name": "id",
+                "type": "integer"
+              },
+              {
+                "name": "at",
+                "type": "text"
+              },
+              {
+                "name": "actor",
+                "type": "text"
+              },
+              {
+                "name": "verb",
+                "type": "text"
+              },
+              {
+                "name": "playlist_id",
+                "type": "text"
+              },
+              {
+                "name": "track_key",
+                "type": "text"
+              },
+              {
+                "name": "detail",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "name": "track_links",
+            "columns": [
+              {
+                "name": "a",
+                "type": "text"
+              },
+              {
+                "name": "b",
+                "type": "text"
+              },
+              {
+                "name": "kind",
+                "type": "text"
+              },
+              {
+                "name": "made_by",
+                "type": "text"
+              },
+              {
+                "name": "detail",
+                "type": "text"
+              },
+              {
+                "name": "updated_at",
+                "type": "text"
+              }
+            ]
+          },
+          {
+            "name": "track_notes",
+            "columns": [
+              {
+                "name": "track_ref",
+                "type": "text"
+              },
+              {
+                "name": "author_id",
+                "type": "text"
+              },
+              {
+                "name": "author",
+                "type": "text"
+              },
+              {
+                "name": "title",
+                "type": "text"
+              },
+              {
+                "name": "body",
+                "type": "text"
+              },
+              {
+                "name": "tags",
+                "type": "text"
+              },
+              {
+                "name": "created_at",
+                "type": "text"
+              },
+              {
+                "name": "updated_at",
+                "type": "text"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
